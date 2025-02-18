@@ -1,1 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,300..800&display=swap');
 @import 'tailwindcss';
+
+@theme {
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1440px;
+
+  --color-brand-primary-light: #bdffe5;
+  --color-brand-primary-medium: #00d5ad;
+  --color-brand-primary-dark: #0b6c54;
+  --color-brand-primary-x-dark: #054434;
+
+  --color-brand-accessory-x-light: #e4f9f3;
+  --color-brand-accessory-light: #92e8cf;
+  --color-brand-accessory-medium: #00b79e;
+  --color-brand-accessory-beige: #fcf9f4;
+  --color-brand-accessory-red: #f11427;
+  --color-brand-accessory-magenta: #b51b76;
+
+  --color-gray-white: #ffffff;
+  --color-gray-x-light: #f8f8f8;
+  --color-gray-light: #e3e3e3;
+  --color-gray-medium: #b5b5b5;
+  --color-gray-dark: #626262;
+  --color-gray-x-dark: #313131;
+  --color-gray-x-x-dark: #121212;
+
+  --color-feedback-success-light: #daf1e2;
+  --color-feedback-success-medium: #379559;
+  --color-feedback-success-dark: #153822;
+
+  --color-feedback-warning-light: #fef3cd;
+  --color-feedback-warning-medium: #dfb623;
+  --color-feedback-warning-dark: #735a02;
+
+  --color-feedback-error-light: #f8d3d2;
+  --color-feedback-error-medium: #d42f28;
+  --color-feedback-error-dark: #7c1b18;
+  --color-feedback-error-x-dark: #450f0d;
+
+  --spacing-x-small: 16px;
+  --spacing-small: 24px;
+  --spacing-medium: 32px;
+  --spacing-large: 40px;
+  --spacing-xxlarge: 100px;
+
+  --font-family-primary: 'Poppins', sans-serif;
+  --font-family-secondary: 'Open Sans', sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --text-x-small: 14px;
+  --text-small: 16px;
+  --text-medium: 18px;
+  --text-large: 24px;
+  --text-x-large: 28px;
+  --text-xx-large: 40px;
+
+  --radius-small: 8px;
+  --radius-medium: 12px;
+  --radius-large: 24px;
+}
