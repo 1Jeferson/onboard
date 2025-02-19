@@ -5,7 +5,8 @@ import { HiOutlineArrowLeft, HiPlus } from 'react-icons/hi2';
 interface Props extends ButtonStyleProps {
   children: ReactNode;
   path: string;
-  iconName: 'arrowBack' | 'plus';
+  iconName?: 'arrowBack' | 'plus';
+  iconPosition?: 'left' | 'right';
 }
 
 const iconMap = {
@@ -13,11 +14,13 @@ const iconMap = {
   plus: <HiPlus size={20} />,
 };
 
-const LinkButton = ({ children, path, disabled, iconName }: Props) => {
+const LinkButton = ({ children, path, disabled, iconName, iconPosition = 'left' }: Props) => {
   return (
     <a href={path} className={buttonStyle({ variant: 'link', disabled })}>
-      {iconName && <span className='mr-1'>{iconMap[iconName]}</span>}
-      {children}
+      <div className={`flex items-center ${iconPosition === 'right' ? 'flex-row-reverse' : ''}`}>
+        {iconName && <span className='mr-1'>{iconMap[iconName]}</span>}
+        {children}
+      </div>
     </a>
   );
 };
