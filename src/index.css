@@ -43,6 +43,7 @@
   --color-feedback-error-x-dark: #450f0d;
 
   --color-cta-medium: #a3da58;
+  --color-cta-dark: #2a333b;
 
   --spacing-xx-small: 8px;
   --spacing-x-small: 16px;
@@ -51,14 +52,15 @@
   --spacing-large: 40px;
   --spacing-xxlarge: 100px;
 
-  --font-family-primary: 'Poppins', sans-serif;
-  --font-family-secondary: 'Open Sans', sans-serif;
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Open Sans', sans-serif;
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
+  --text-xx-small: 12px;
   --text-x-small: 14px;
   --text-small: 16px;
   --text-medium: 18px;
