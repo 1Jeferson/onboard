@@ -68,6 +68,9 @@
   --text-x-large: 28px;
   --text-xx-large: 40px;
 
+  --leading-tight: 120%;
+  --leading-snug: 150%;
+
   --radius-small: 8px;
   --radius-medium: 12px;
   --radius-large: 24px;
