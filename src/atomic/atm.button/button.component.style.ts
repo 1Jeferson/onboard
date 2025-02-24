@@ -1,7 +1,7 @@
 import { tv, VariantProps } from 'tailwind-variants';
 
 export const buttonStyle = tv({
-  base: 'font-family-secondary rounded-small font-medium text-white cursor-pointer py-xx-small px-x-small',
+  base: 'font-family-secondary rounded-small text-white font-medium cursor-pointer py-xx-small px-x-small',
   variants: {
     variant: {
       primary:
