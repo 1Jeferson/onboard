@@ -1,24 +1,24 @@
 import { ReactNode } from 'react';
 import { buttonStyle, ButtonStyleProps } from '../atm.button/button.component.style';
-import { HiOutlineArrowLeft, HiPlus } from 'react-icons/hi2';
+import { Arrow, Add } from '../assets/icons';
 
 interface Props extends ButtonStyleProps {
   children: ReactNode;
   path: string;
-  iconName?: 'arrowBack' | 'plus';
+  icon?: 'arrowBack' | 'plus';
   iconPosition?: 'left' | 'right';
 }
 
 const iconMap = {
-  arrowBack: <HiOutlineArrowLeft size={20} />,
-  plus: <HiPlus size={20} />,
+  arrowBack: <Arrow />,
+  plus: <Add />,
 };
 
-const LinkButton = ({ children, path, disabled, iconName, iconPosition = 'left' }: Props) => {
+const LinkButton = ({ children, path, disabled, icon, iconPosition = 'left' }: Props) => {
   return (
     <a href={path} className={buttonStyle({ variant: 'link', disabled })}>
       <div className={`flex items-center ${iconPosition === 'right' ? 'flex-row-reverse' : ''}`}>
-        {iconName && <span className='mr-1'>{iconMap[iconName]}</span>}
+        {icon && <span className='mr-1'>{iconMap[icon]}</span>}
         {children}
       </div>
     </a>
