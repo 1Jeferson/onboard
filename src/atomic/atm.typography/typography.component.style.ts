@@ -21,7 +21,7 @@ export const input = tv({
   base: 'font-secondary text-small',
   variants: {
     type: {
-      label: 'text-gray-x-dark ',
+      label: 'text-gray-dark ',
       value: 'text-gray-medium ',
       caption: 'text-feedback-warning-dark',
     },
