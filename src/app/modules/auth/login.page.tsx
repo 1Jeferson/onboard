@@ -1,11 +1,12 @@
+import { Button } from '@/atomic/atm.button';
 import { TextInput } from '@/atomic/atm.text-input';
 
 const LoginPage = () => {
   return (
-    <div className='flex justify-center items-center gap-2 p-small'>
-      <TextInput variant='default' label='Input label' icon='info' placeholder='Default' caption='Input caption' />
-      <TextInput variant='error' label='Input label' placeholder='Error' icon='info' caption='Input caption' />
-      <TextInput variant='default' disabled label='Input label' placeholder='Disabled' />
+    <div className='flex w-lg m-auto flex-col items-center gap-[8px] p-small'>
+      <TextInput variant='default' type='email' placeholder='Digite seu e-mail' label='E-mail' />
+      <TextInput placeholder='Digite sua senha' type='password' variant='default' label='Senha' />
+      <Button variant='primary'>Login</Button>
     </div>
   );
 };
