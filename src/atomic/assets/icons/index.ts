@@ -1,5 +1,5 @@
-import Arrow from './Arrow.svg';
-import Add from './Add.svg';
-import Info from './Information.svg';
+import Arrow from './arrow.svg';
+import Add from './add.svg';
+import Info from './information.svg';
 
 export { Arrow, Add, Info };
