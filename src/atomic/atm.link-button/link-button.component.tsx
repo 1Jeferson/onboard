@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { buttonStyle, ButtonStyleProps } from '../atm.button/button.component.style';
 import { Arrow, Add } from '../assets/icons';
+import { twMerge } from 'tailwind-merge';
 
 interface Props extends ButtonStyleProps {
   children: ReactNode;
@@ -16,9 +17,9 @@ const iconMap = {
 
 const LinkButton = ({ children, path, disabled, icon, iconPosition = 'left' }: Props) => {
   return (
-    <a href={path} className={buttonStyle({ variant: 'link', disabled })}>
-      <div className={`flex items-center ${iconPosition === 'right' ? 'flex-row-reverse' : ''}`}>
-        {icon && <span className='mr-1'>{iconMap[icon]}</span>}
+    <a href={path} className={twMerge(buttonStyle({ variant: 'link', disabled }))}>
+      <div className={twMerge('flex items-center', iconPosition === 'right' && 'flex-row-reverse')}>
+        {icon && <span>{iconMap[icon]}</span>}
         {children}
       </div>
     </a>
