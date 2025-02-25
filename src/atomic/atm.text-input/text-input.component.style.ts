@@ -1,6 +1,6 @@
 import { tv, VariantProps } from 'tailwind-variants';
 
-export const textInputStye = tv({
+export const textInputStyle = tv({
   base: 'rounded-xsmall font-secondary p-xx-small focus:outline-none',
   variants: {
     variant: {
@@ -13,4 +13,4 @@ export const textInputStye = tv({
   },
 });
 
-export type TextInputVariants = VariantProps<typeof textInputStye>;
+export type TextInputVariants = VariantProps<typeof textInputStyle>;

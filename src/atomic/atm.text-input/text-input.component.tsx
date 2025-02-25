@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { InputCaption, InputLabel } from '../atm.typography';
-import { textInputStye, TextInputVariants } from './text-input.component.style';
+import { textInputStyle, TextInputVariants } from './text-input.component.style';
 import { twMerge } from 'tailwind-merge';
 import { Info } from '../assets/icons';
 
@@ -33,12 +33,12 @@ const TextInput = ({
   return (
     <div className={twMerge('flex flex-col', className)}>
       <div
-        className={`flex items-center ${iconPosition === 'right' ? 'flex-row' : 'flex-row-reverse'} gap-1 min-h-[20px]`}
+        className={`flex items-center ${iconPosition === 'right' ? 'flex-row' : 'flex-row-reverse'} gap-[4px] min-h-[20px]`}
       >
         {label && <InputLabel>{label}</InputLabel>}
         {IconComponent && <IconComponent />}
       </div>
-      <input className={textInputStye({ variant, disabled })} placeholder={placeholder} disabled={disabled} />
+      <input className={textInputStyle({ variant, disabled })} placeholder={placeholder} disabled={disabled} />
       <div className='min-h-[20px]'>{caption && <InputCaption>{caption}</InputCaption>}</div>
     </div>
   );
