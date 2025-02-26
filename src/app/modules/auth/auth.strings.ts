@@ -3,7 +3,7 @@ export const authStrings = {
   emailPlaceholder: 'Digite seu e-mail',
   passwordLabel: 'Senha',
   passwordPlaceholder: 'Digite sua senha',
-  Button: {
+  button: {
     login: 'Login',
     register: 'Registrar',
   },

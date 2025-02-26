@@ -17,7 +17,7 @@ const LoginPage = () => {
         variant='default'
         label={authStrings.passwordLabel}
       />
-      <Button variant='primary'>{authStrings.Button.login}</Button>
+      <Button variant='primary'>{authStrings.button.login}</Button>
     </div>
   );
 };
