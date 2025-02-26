@@ -1,6 +1,15 @@
 const EyeOff = () => {
   return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='img'
+      aria-labelledby='eyeOffTitle'
+    >
+      <title id='eyeOffTitle'>Esconder senha</title>
       <path
         d='M14.5301 9.47008L9.47008 14.5301C8.79908 13.8591 8.42212 12.949 8.42212 12.0001C8.42212 11.5302 8.51467 11.065 8.69448 10.6309C8.87428 10.1968 9.13784 9.80232 9.47008 9.47008C9.80232 9.13784 10.1968 8.87428 10.6309 8.69448C11.065 8.51467 11.5302 8.42212 12.0001 8.42212C12.949 8.42212 13.8591 8.79908 14.5301 9.47008Z'
         stroke='#313131'
