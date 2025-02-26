@@ -1,7 +1,7 @@
 import { tv, VariantProps } from 'tailwind-variants';
 
 export const buttonStyle = tv({
-  base: 'font-family-secondary rounded-small text-white font-medium cursor-pointer py-xx-small px-x-small flex items-center gap-[4px] w-full justify-center',
+  base: 'font-family-secondary rounded-small text-white font-medium cursor-pointer py-2x-small px-x-small flex items-center w-full justify-center',
   variants: {
     variant: {
       primary:
@@ -12,7 +12,7 @@ export const buttonStyle = tv({
         'bg-feedback-error-medium hover:bg-feedback-error-dark active:bg-feedback-error-x-dark focus:outline focus:outline-2 focus:outline-feedback-error-medium',
       secondaryDestructive:
         'text-feedback-error-medium border-1 border-feedback-error-medium hover:text-feedback-error-dark hover:border-feedback-error-dark active:border-feedback-error-medium active:text-feedback-error-dark focus:outline focus:outline-2 focus:outline-feedback-error-medium',
-      cta: 'bg-gray-x-dark hover:bg-gray-dark focus:outline focus:outline-2 focus:outline-gray-xx-dark active:bg-gray-xx-dark',
+      cta: 'bg-gray-x-dark hover:bg-gray-dark focus:outline focus:outline-2 focus:outline-gray-2x-dark active:bg-gray-2x-dark',
       link: 'text-brand-primary-dark hover:underline focus:outline focus:outline-2 focus:outline-brand-primary active:text-brand-accessory-magenta active:outline-none',
     },
     disabled: {
