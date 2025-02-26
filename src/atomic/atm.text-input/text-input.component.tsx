@@ -42,7 +42,7 @@ const TextInput = ({
 
   return (
     <div className={twMerge('flex flex-col w-full', className)}>
-      <div className='flex items-center gap-[4px]'>
+      <div className='flex items-center gap-3x-small'>
         {label && <InputLabel>{label}</InputLabel>}
         {IconComponent && (
           <span className={iconPosition === 'left' ? 'order-first' : 'order-last'}>
