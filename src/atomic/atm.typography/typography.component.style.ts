@@ -23,7 +23,7 @@ export const input = tv({
     type: {
       label: 'text-gray-dark ',
       value: 'text-gray-medium ',
-      caption: 'text-feedback-warning-dark',
+      caption: 'text-feedback-error-dark',
     },
   },
 });

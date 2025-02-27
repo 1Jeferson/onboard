@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,300..800&display=swap');
 @import 'tailwindcss';
 
@@ -7,6 +8,8 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 1200px;
   --breakpoint-xl: 1440px;
+
+  --container-md: 448px;
 
   --color-brand-primary-light: #bdffe5;
   --color-brand-primary-medium: #00d5ad;
