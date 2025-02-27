@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 import { buttonStyle, ButtonStyleProps } from './button.component.style';
 
-interface Props extends ButtonStyleProps {
+interface ButtonProps extends ButtonStyleProps {
   children: ReactNode;
 }
 
-const Button = ({ children, variant, disabled }: Props) => {
+const Button = ({ children, variant, disabled }: ButtonProps) => {
   return <button className={buttonStyle({ variant, disabled })}>{children}</button>;
 };
 
