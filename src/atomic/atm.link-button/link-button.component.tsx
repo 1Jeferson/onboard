@@ -4,6 +4,7 @@ import { Arrow, Add } from '../assets/icons';
 import { twMerge } from 'tailwind-merge';
 
 interface Props extends ButtonStyleProps {
+  className?: string;
   children: ReactNode;
   path: string;
   icon?: 'arrowBack' | 'plus';
