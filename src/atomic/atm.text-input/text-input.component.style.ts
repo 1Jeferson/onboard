@@ -5,7 +5,7 @@ export const textInputStyle = tv({
   variants: {
     variant: {
       default: 'border-1 border-gray-medium focus:border-brand-primary-dark',
-      error: 'border-1 border-gray-medium focus:border-feedback-error-medium',
+      error: 'border-1 border-feedback-error-medium',
     },
     disabled: {
       true: 'border-1 border-gray-medium',
