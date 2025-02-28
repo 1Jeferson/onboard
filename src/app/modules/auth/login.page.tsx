@@ -1,12 +1,11 @@
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { Form, FormField, FormItem, FormControl } from '@/components/ui/form';
 import { Button } from '@/atomic/atm.button';
 import { TextInput } from '@/atomic/atm.text-input';
+import { Link, Text } from '@/atomic/atm.typography';
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { LoginSchema, loginSchema } from './auth.schema';
 import { authStrings } from './auth.strings';
-import { Link, Text } from '@/atomic/atm.typography';
 
 const LoginPage = () => {
   const form = useForm({
