@@ -1,3 +1,5 @@
 import LoginPage from './login.page';
+import Layout from './layout';
+import authRoutes from './auth.routes';
 
-export { LoginPage };
+export { LoginPage, Layout, authRoutes };
