@@ -239,3 +239,12 @@ export type UserInput = {
   /** User password */
   password: Scalars['String']['input'];
 };
+
+export type LoginMutationVariables = Exact<{
+  data: LoginInput;
+}>;
+
+export type LoginMutation = {
+  __typename?: 'Mutation';
+  login: { __typename?: 'Login'; token: string; user: { __typename?: 'User'; name: string; email: string } };
+};
