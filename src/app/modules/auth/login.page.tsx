@@ -1,14 +1,15 @@
+import { LoginInput } from '@/app/data/graphql/generated';
 import { Button } from '@/atomic/atm.button';
 import { TextInput } from '@/atomic/atm.text-input';
 import { Link, Text } from '@/atomic/atm.typography';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { LoginSchema, loginSchema } from './auth.schema';
+import { loginSchema } from './auth.schema';
 import { authStrings } from './auth.strings';
 
 const LoginPage = () => {
-  const form = useForm({
+  const form = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
@@ -16,7 +17,7 @@ const LoginPage = () => {
     },
   });
 
-  const onSubmit = (data: LoginSchema) => {
+  const onSubmit = (data: LoginInput) => {
     console.log('Form Data:', data);
   };
 
