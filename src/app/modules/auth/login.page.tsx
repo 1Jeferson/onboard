@@ -1,12 +1,16 @@
 import { LoginInput } from '@/app/data/graphql/generated';
 import { Button } from '@/atomic/atm.button';
 import { TextInput } from '@/atomic/atm.text-input';
-import { Link, Text } from '@/atomic/atm.typography';
+import { InputCaption, Link, Text } from '@/atomic/atm.typography';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { loginSchema } from './auth.schema';
 import { authStrings } from './auth.strings';
+import { useState } from 'react';
+import { useLogin } from '@/app/domain/auth/login.use-case';
+import { useNavigate } from 'react-router-dom';
+import { kanbanRoutes } from '../home';
 
 const LoginPage = () => {
   const form = useForm<LoginInput>({
@@ -17,8 +21,23 @@ const LoginPage = () => {
     },
   });
 
+  const navigate = useNavigate();
+
+  const [serverError, setServerError] = useState<string | null>(null);
+
+  const { login, loading } = useLogin({
+    onCompleted(data) {
+      navigate(kanbanRoutes.home);
+      setServerError(null);
+    },
+    onError(error) {
+      setServerError(error.message);
+    },
+  });
+
   const onSubmit = (data: LoginInput) => {
-    console.log('Form Data:', data);
+    setServerError(null);
+    login({ data });
   };
 
   return (
@@ -72,9 +91,11 @@ const LoginPage = () => {
             {authStrings.linkForgotPassword}
           </Link>
 
-          <Button type='submit' variant='primary'>
-            {authStrings.button.login}
+          <Button type='submit' variant='primary' disabled={loading}>
+            {loading ? authStrings.loading : authStrings.button.login}
           </Button>
+
+          {serverError && <InputCaption className='text-center'>{serverError}</InputCaption>}
 
           <Text className='text-center' variant='b2'>
             ou

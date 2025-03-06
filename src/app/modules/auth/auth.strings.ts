@@ -7,6 +7,7 @@ export const authStrings = {
   secondaryText: 'Para entrar na plataforma é necessário entrar \n ou criar uma conta.',
   linkForgotPassword: 'Esqueceu a senha?',
   linkRegister: 'Cadastre-se',
+  loading: 'Carregando',
   button: {
     login: 'Login',
     register: 'Registrar',
