@@ -21,6 +21,7 @@ const LoginPage = () => {
     },
   });
 
+
   const navigate = useNavigate();
 
   const [serverError, setServerError] = useState<string | null>(null);
@@ -38,6 +39,7 @@ const LoginPage = () => {
   const onSubmit = (data: LoginInput) => {
     setServerError(null);
     login({ data });
+
   };
 
   return (
