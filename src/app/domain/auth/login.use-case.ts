@@ -3,8 +3,8 @@ import { LoginMutation, LoginMutationVariables, LoginDocument } from '@/app/data
 import { useAuthStore, useUserStore } from '@/app/store';
 
 interface LoginUseCase {
-  onCompleted?: (data?: LoginMutation) => void;
-  onError?: (error: Error) => void;
+  onCompleted: (data: LoginMutation) => void;
+  onError: (error: Error) => void;
 }
 
 export const useLogin = ({ onCompleted, onError }: LoginUseCase) => {
@@ -13,20 +13,22 @@ export const useLogin = ({ onCompleted, onError }: LoginUseCase) => {
 
   const [loginMutation, { loading }] = useMutation<LoginMutation, LoginMutationVariables>(LoginDocument, {
     onCompleted: (response) => {
-      if (response?.login) {
-        const { token, user } = response.login;
+      if (!response?.login) return;
 
+      const { token, user } = response.login;
+
+      if (token && user?.id && user?.name) {
         setUser({ id: user.id, name: user.name });
         setToken(token);
       }
-      onCompleted?.(response);
+
+      onCompleted(response);
     },
-    onError: (err) => onError?.(err),
+    onError: (err) => onError(err),
   });
 
   const login = (variables: LoginMutationVariables) => {
     if (loading) return;
-
     loginMutation({ variables });
   };
 
