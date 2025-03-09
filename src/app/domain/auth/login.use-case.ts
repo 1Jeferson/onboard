@@ -2,7 +2,13 @@ import { useMutation } from '@apollo/client';
 import { LoginMutation, LoginMutationVariables, LoginDocument } from '@/app/data/graphql/generated';
 import { useAuthStore, useUserStore } from '@/app/store';
 
-export const useLogin = (onCompleted: (data: LoginMutation) => void, onError: (err: Error) => void) => {
+export const useLogin = ({
+  onCompleted,
+  onError,
+}: {
+  onCompleted: (data: LoginMutation) => void;
+  onError: (error: Error) => void;
+}) => {
   const { setUser } = useUserStore();
   const { setToken } = useAuthStore();
 
