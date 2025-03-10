@@ -3,5 +3,7 @@ import Add from './add.svg';
 import Info from './information.svg';
 import EyeOff from './eye-off.svg';
 import EyeOn from './eye-on.svg';
+import CheckboxDefault from './checkboxDefault.svg';
+import CheckboxSelected from './checkboxSelected.svg';
 
-export { Arrow, Add, Info, EyeOff, EyeOn };
+export { Arrow, Add, Info, EyeOff, EyeOn, CheckboxDefault, CheckboxSelected };
