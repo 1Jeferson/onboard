@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { UserInput } from '@/app/data/graphql/generated';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema } from './auth.schema';
+import { Checkbox } from '@/atomic/atm.checkbox/checkbox.component';
 
 interface RegisterFormInput extends UserInput {
   passwordConfirmation: string;
@@ -121,11 +122,7 @@ const RegisterPage = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <TextInput
-                      type='checkbox'
-                      checked={field.value}
-                      onChange={(e) => field.onChange(e.target.checked)}
-                    />
+                    <Checkbox checked={field.value} onChange={(e) => field.onChange(e.target.checked)} />
                   </FormControl>
                 </FormItem>
               )}
