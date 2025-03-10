@@ -2,9 +2,9 @@ import { ReactNode, useState, forwardRef } from 'react';
 import { InputCaption, InputLabel } from '../atm.typography';
 import { textInputStyle, TextInputVariants } from './text-input.component.style';
 import { twMerge } from 'tailwind-merge';
-import { Info, EyeOn, EyeOff, CheckboxSelected, CheckboxDefault } from '../assets/icons';
+import { Info, EyeOn, EyeOff } from '../assets/icons';
 
-type InputTypes = 'text' | 'email' | 'password' | 'checkbox';
+type InputTypes = 'text' | 'email' | 'password';
 
 interface TextInputProps extends TextInputVariants, React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
@@ -46,32 +46,14 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         </div>
 
         <div className='relative'>
-          {type === 'checkbox' ? (
-            <button
-              type='button'
-              onClick={() => {
-                const newCheckedState = !props.checked;
-                if (props.onChange) {
-                  props.onChange({
-                    target: { value: String(newCheckedState), checked: newCheckedState },
-                  } as React.ChangeEvent<HTMLInputElement>);
-                }
-              }}
-              disabled={disabled}
-              className='flex items-center cursor-pointer'
-            >
-              {props.checked ? <CheckboxSelected /> : <CheckboxDefault />} {placeholder}
-            </button>
-          ) : (
-            <input
-              ref={ref}
-              type={inputType}
-              className={textInputStyle({ variant, disabled })}
-              placeholder={placeholder}
-              disabled={disabled}
-              {...props}
-            />
-          )}
+          <input
+            ref={ref}
+            type={inputType}
+            className={textInputStyle({ variant, disabled })}
+            placeholder={placeholder}
+            disabled={disabled}
+            {...props}
+          />
 
           {type === 'password' && (
             <button
