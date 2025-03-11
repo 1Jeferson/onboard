@@ -11,8 +11,8 @@ export const useRegister = ({
   onCompleted,
   onError,
 }: {
-  onCompleted: (data: CreateUserMutation) => void;
-  onError: (error: Error) => void;
+  onCompleted?: (data: CreateUserMutation) => void;
+  onError?: (error: Error) => void;
 }) => {
   const { setUser } = useUserStore();
   const { setToken } = useAuthStore();
@@ -23,13 +23,12 @@ export const useRegister = ({
 
       const { token, user } = response.createUser;
 
-      if (token && user?.id && user?.name) {
-        setUser({ id: user.id, name: user.name });
-        setToken(token);
-      }
-      onCompleted(response);
+      setUser({ id: user.id, name: user.name });
+      setToken(token);
+
+      onCompleted?.(response);
     },
-    onError: (err) => onError(err),
+    onError,
   });
 
   const register = (variables: CreateUserMutationVariables) => {
