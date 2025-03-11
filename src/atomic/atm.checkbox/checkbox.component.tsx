@@ -7,22 +7,25 @@ interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   disabled?: boolean;
 }
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ className, disabled, checked, onChange, ...props }) => {
-    const handleClick = () => {
-      if (onChange) {
-        onChange({
-          target: { checked: !checked },
-        } as React.ChangeEvent<HTMLInputElement>);
-      }
-    };
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function CheckboxComponent(
+  { className, disabled, checked, onChange, ...props },
+  ref,
+) {
+  const handleClick = () => {
+    if (onChange) {
+      onChange({
+        target: { checked: !checked },
+      } as React.ChangeEvent<HTMLInputElement>);
+    }
+  };
 
-    return (
-      <div className={twMerge('flex flex-col w-full', className)}>
-        <button type='button' onClick={handleClick} disabled={disabled} className='flex items-center cursor-pointer'>
-          {checked ? <CheckboxSelected /> : <CheckboxDefault />} {props.placeholder}
-        </button>
-      </div>
-    );
-  },
-);
+  return (
+    <div className={twMerge('flex w-full', className)}>
+      <button type='button' onClick={handleClick} disabled={disabled} className='flex items-center cursor-pointer'>
+        {checked ? <CheckboxSelected /> : <CheckboxDefault />} {props.placeholder}
+      </button>
+
+      <input type='checkbox' ref={ref} checked={checked} onChange={onChange} hidden {...props} />
+    </div>
+  );
+});
