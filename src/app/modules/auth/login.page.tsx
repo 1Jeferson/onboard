@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useLogin } from '@/app/domain/auth/login.use-case';
 import { useNavigate } from 'react-router-dom';
 import { kanbanRoutes } from '../home';
+import authRoutes from './auth.routes';
 
 const LoginPage = () => {
   const form = useForm<LoginInput>({
@@ -44,7 +45,7 @@ const LoginPage = () => {
 
   return (
     <Form {...form}>
-      <div className='flex flex-col items-center gap-medium w-full max-w-xlarge m-auto p-2x-small sm:p-large'>
+      <div className='flex flex-col items-center gap-3x-small w-full max-w-xlarge m-auto p-x-small sm:p-small'>
         <Text variant='h1'>{authStrings.mainText}</Text>
         <Text variant='b1' className='whitespace-pre-line text-center'>
           {authStrings.secondaryText}
@@ -105,8 +106,8 @@ const LoginPage = () => {
 
           <div className='flex justify-center gap-3x-small'>
             <Text variant='b1'>{authStrings.linkForgotPassword}</Text>
-            <Link href='/' variant='link'>
-              {authStrings.linkRegister}
+            <Link href={authRoutes.register} variant='link'>
+              {authStrings.register}
             </Link>
           </div>
         </form>

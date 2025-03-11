@@ -19,7 +19,7 @@ const iconMap = {
 const LinkButton = ({ children, path, disabled, icon, iconPosition = 'left' }: LinkButtonProps) => {
   return (
     <a href={path} className={twMerge(buttonStyle({ variant: 'link', disabled }))}>
-      <div className={twMerge('flex items-center', iconPosition === 'right' && 'flex-row-reverse')}>
+      <div className={twMerge('flex items-center gap-3x-small', iconPosition === 'right' && 'flex-row-reverse')}>
         {icon && <span>{iconMap[icon]}</span>}
         {children}
       </div>

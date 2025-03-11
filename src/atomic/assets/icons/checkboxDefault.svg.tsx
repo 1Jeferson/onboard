@@ -1,0 +1,13 @@
+const CheckboxDefault = () => {
+  return (
+    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+      <title>Não aceito</title>
+      <path
+        d='M2.5 6C2.5 4.067 4.067 2.5 6 2.5H18C19.933 2.5 21.5 4.067 21.5 6V18C21.5 19.933 19.933 21.5 18 21.5H6C4.067 21.5 2.5 19.933 2.5 18V6Z'
+        stroke='#B5B5B5'
+      />
+    </svg>
+  );
+};
+
+export default CheckboxDefault;
