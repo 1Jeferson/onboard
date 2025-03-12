@@ -4,12 +4,14 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout, LoginPage, RegisterPage, authRoutes } from './app/modules/auth';
 import { HomePage, kanbanRoutes } from './app/modules/home';
 import AuthGuard from './app/guards/auth-guard';
+import { useAuthStore } from './app/store';
 
 function App() {
+  const { token } = useAuthStore();
   return (
     <ApolloProvider client={client}>
       <Routes>
-        <Route path='/' element={<Navigate to={authRoutes.login} />} />
+        <Route path='/' element={token ? <Navigate to={kanbanRoutes.home} /> : <Navigate to={authRoutes.login} />} />
 
         <Route element={<Layout />}>
           <Route path={authRoutes.login} element={<LoginPage />} />
