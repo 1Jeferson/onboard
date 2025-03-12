@@ -1,9 +1,9 @@
 import client from './app/data/client';
 import { ApolloProvider } from '@apollo/client';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Layout, LoginPage, authRoutes } from './app/modules/auth';
+import { Layout, LoginPage, RegisterPage, authRoutes } from './app/modules/auth';
 import { HomePage, kanbanRoutes } from './app/modules/home';
-import RegisterPage from './app/modules/auth/register.page';
+import AuthGuard from './app/guards/auth-guard';
 
 function App() {
   return (
@@ -15,7 +15,10 @@ function App() {
           <Route path={authRoutes.login} element={<LoginPage />} />
           <Route path={authRoutes.register} element={<RegisterPage />} />
         </Route>
-        <Route path={kanbanRoutes.home} element={<HomePage />} />
+
+        <Route element={<AuthGuard />}>
+          <Route path={kanbanRoutes.home} element={<HomePage />} />
+        </Route>
       </Routes>
     </ApolloProvider>
   );
