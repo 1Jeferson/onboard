@@ -7,7 +7,7 @@ const Layout = () => {
 
   return (
     <div>
-      {location.pathname !== '/auth/login' && (
+      {location.pathname !== '/login' && (
         <header className='absolute top-medium left-small'>
           <LinkButton path='/' variant='link' icon='arrowBack'>
             {authStrings.linkBack}
