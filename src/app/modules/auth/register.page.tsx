@@ -8,7 +8,11 @@ import { useForm } from 'react-hook-form';
 import { UserInput } from '@/app/data/graphql/generated';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema } from './auth.schema';
-import { Checkbox } from '@/atomic/atm.checkbox/checkbox.component';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useRegister } from '@/app/domain/auth/register.use-case';
+import { kanbanRoutes } from '../home';
+import { Checkbox } from '@/atomic/atm.checkbox';
 
 interface RegisterFormInput extends UserInput {
   passwordConfirmation: string;
@@ -27,8 +31,23 @@ const RegisterPage = () => {
     },
   });
 
+  const navigate = useNavigate();
+
+  const [serverError, setServerError] = useState<string | null>(null);
+
+  const { register, loading } = useRegister({
+    onCompleted(data) {
+      navigate(kanbanRoutes.home);
+      setServerError(null);
+    },
+    onError(error) {
+      setServerError(error.message);
+    },
+  });
+
   const onSubmit = (data: UserInput) => {
-    console.log('Dados validados:', data);
+    const { name, email, password } = data;
+    register({ data: { name, email, password } });
   };
 
   return (
@@ -122,7 +141,7 @@ const RegisterPage = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Checkbox checked={field.value} onChange={(e) => field.onChange(e.target.checked)} />
+                    <Checkbox name='acceptedTerms'>{authStrings.confirmTerms}</Checkbox>
                   </FormControl>
                 </FormItem>
               )}
@@ -141,8 +160,10 @@ const RegisterPage = () => {
             <InputCaption>{form.formState.errors.acceptedTerms?.message}</InputCaption>
           </div>
 
-          <Button type='submit' variant='primary'>
-            {authStrings.button.register}
+          {serverError && <InputCaption className='text-center'>{serverError}</InputCaption>}
+
+          <Button type='submit' variant='primary' disabled={loading}>
+            {loading ? authStrings.loading : authStrings.button.register}
           </Button>
 
           <Text className='text-center' variant='b2'>

@@ -6,8 +6,8 @@ export const useLogin = ({
   onCompleted,
   onError,
 }: {
-  onCompleted: (data: LoginMutation) => void;
-  onError: (error: Error) => void;
+  onCompleted?: (data: LoginMutation) => void;
+  onError?: (error: Error) => void;
 }) => {
   const { setUser } = useUserStore();
   const { setToken } = useAuthStore();
@@ -18,14 +18,12 @@ export const useLogin = ({
 
       const { token, user } = response.login;
 
-      if (token && user?.id && user?.name) {
-        setUser({ id: user.id, name: user.name });
-        setToken(token);
-      }
+      setUser({ id: user.id, name: user.name });
+      setToken(token);
 
-      onCompleted(response);
+      onCompleted?.(response);
     },
-    onError: (err) => onError(err),
+    onError,
   });
 
   const login = (variables: LoginMutationVariables) => {
