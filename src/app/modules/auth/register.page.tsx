@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useRegister } from '@/app/domain/auth/register.use-case';
 import { kanbanRoutes } from '../home';
-import { Checkbox } from '@/atomic/atm.checkbox/checkbox.component';
+import { Checkbox } from '@/atomic/atm.checkbox';
 
 interface RegisterFormInput extends UserInput {
   passwordConfirmation: string;
@@ -141,7 +141,7 @@ const RegisterPage = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Checkbox checked={field.value} onChange={(e) => field.onChange(e.target.checked)} />
+                    <Checkbox name='acceptedTerms'>{authStrings.confirmTerms}</Checkbox>
                   </FormControl>
                 </FormItem>
               )}
