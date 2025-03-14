@@ -1,16 +1,17 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../store';
 import { authRoutes } from '../modules/auth';
 import { kanbanRoutes } from '../modules/home';
 
 const AuthGuard = () => {
   const { token } = useAuthStore();
+  const location = useLocation();
 
-  if (window.location.pathname === '/' && token) {
+  if (location.pathname === '/' && token) {
     return <Navigate to={kanbanRoutes.home} replace />;
   }
 
-  if (window.location.pathname === '/' && !token) {
+  if (location.pathname === '/' && !token) {
     return <Navigate to={authRoutes.login} replace />;
   }
 
