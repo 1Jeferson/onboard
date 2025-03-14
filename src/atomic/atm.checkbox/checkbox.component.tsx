@@ -1,31 +1,29 @@
-import { forwardRef } from 'react';
+import { FC, ReactNode } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { CheckboxDefault, CheckboxSelected } from '../assets/icons';
 import { twMerge } from 'tailwind-merge';
-import { CheckboxSelected, CheckboxDefault } from '../assets/icons';
 
-interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface CheckboxInputProps {
+  name: string;
+  children?: ReactNode;
   className?: string;
-  disabled?: boolean;
 }
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function CheckboxComponent(
-  { className, disabled, checked, onChange, ...props },
-  ref,
-) {
-  const handleClick = () => {
-    if (onChange) {
-      onChange({
-        target: { checked: !checked },
-      } as React.ChangeEvent<HTMLInputElement>);
-    }
-  };
+const Checkbox: FC<CheckboxInputProps> = ({ name, children, className }) => {
+  const { register, watch } = useFormContext();
+
+  const isChecked = watch(name);
 
   return (
-    <div className={twMerge('flex w-full', className)}>
-      <button type='button' onClick={handleClick} disabled={disabled} className='flex items-center cursor-pointer'>
-        {checked ? <CheckboxSelected /> : <CheckboxDefault />} {props.placeholder}
-      </button>
+    <div className={twMerge('flex flex-col gap-1', className)}>
+      <label className='flex items-center gap-2x-small cursor-pointer'>
+        <input type='checkbox' {...register(name)} className='hidden' />
+        {isChecked ? <CheckboxSelected /> : <CheckboxDefault />}
 
-      <input type='checkbox' ref={ref} checked={checked} onChange={onChange} hidden {...props} />
+        <span className='text-left leading-none'>{children}</span>
+      </label>
     </div>
   );
-});
+};
+
+export default Checkbox;
