@@ -3,13 +3,13 @@ import { ApolloProvider } from '@apollo/client';
 import { Route, Routes } from 'react-router-dom';
 import { Layout, LoginPage, RegisterPage, authRoutes } from './app/modules/auth';
 import { HomePage, kanbanRoutes } from './app/modules/home';
-import AuthGuard from './app/guards/auth-guard';
+import { AuthGuard, LoginRedirect } from './app/guards';
 
 function App() {
   return (
     <ApolloProvider client={client}>
       <Routes>
-        <Route path='/' element={<AuthGuard />} />
+        <Route path='/' element={<LoginRedirect />} />
 
         <Route element={<Layout />}>
           <Route path={authRoutes.login} element={<LoginPage />} />
