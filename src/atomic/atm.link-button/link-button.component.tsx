@@ -1,19 +1,20 @@
 import { ReactNode } from 'react';
 import { buttonStyle, ButtonStyleProps } from '../atm.button/button.component.style';
-import { Arrow, Add } from '../assets/icons';
+import { Arrow, Add, PickerDown } from '../assets/icons';
 import { twMerge } from 'tailwind-merge';
 
 interface LinkButtonProps extends ButtonStyleProps {
   className?: string;
   children: ReactNode;
-  path: string;
-  icon?: 'arrowBack' | 'plus';
+  path?: string;
+  icon?: 'arrowBack' | 'plus' | 'pickerDown';
   iconPosition?: 'left' | 'right';
 }
 
 const iconMap = {
   arrowBack: <Arrow />,
   plus: <Add />,
+  pickerDown: <PickerDown />,
 };
 
 const LinkButton = ({ children, path, disabled, icon, iconPosition = 'left' }: LinkButtonProps) => {
