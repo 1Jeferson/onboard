@@ -7,7 +7,6 @@ import { Text } from '../atm.typography';
 import { Button } from '../atm.button';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { BoardInput } from '@/app/data/graphql/generated';
-import { authStrings } from '@/app/modules/auth/auth.strings';
 import { createBoardSchema } from '@/app/modules/board/board.schema';
 import { useCreateBoard } from '@/app/domain/auth/create-board.use-case';
 import { TextInput } from '../atm.text-input';
@@ -74,8 +73,8 @@ const EmptyProject = () => {
                 </FormItem>
               )}
             />
-            <Button type='submit' variant='primary' disabled={loading}>
-              {loading ? authStrings.loading : homeStrings.button.createProject}
+            <Button type='submit' variant='primary' loading={loading} disabled={loading}>
+              {homeStrings.button.createProject}
             </Button>
             {serverError && <InputCaption>{serverError}</InputCaption>}
           </form>

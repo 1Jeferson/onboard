@@ -22,7 +22,6 @@ const LoginPage = () => {
     },
   });
 
-
   const navigate = useNavigate();
 
   const [serverError, setServerError] = useState<string | null>(null);
@@ -40,7 +39,6 @@ const LoginPage = () => {
   const onSubmit = (data: LoginInput) => {
     setServerError(null);
     login({ data });
-
   };
 
   return (
@@ -94,8 +92,8 @@ const LoginPage = () => {
             {authStrings.linkForgotPassword}
           </Link>
 
-          <Button type='submit' variant='primary' disabled={loading}>
-            {loading ? authStrings.loading : authStrings.button.login}
+          <Button type='submit' variant='primary' loading={loading} disabled={loading}>
+            {authStrings.button.login}
           </Button>
 
           {serverError && <InputCaption className='text-center'>{serverError}</InputCaption>}
