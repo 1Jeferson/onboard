@@ -19,13 +19,13 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
             className='bg-gray-x-light p-small rounded-small max-w-xlarge w-full relative text-center'
             onClick={(e) => e.stopPropagation()}
           >
-            <button className='absolute top-4 right-4 cursor-pointer' onClick={onClose}>
+            <button className='absolute top-x-small right-x-small cursor-pointer' onClick={onClose}>
               <Close />
             </button>
             {children}
           </div>
         </div>,
-        document.body,
+        document.getElementById('modal') as HTMLElement,
       )}
     </div>
   );
