@@ -6,5 +6,6 @@ import EyeOn from './eye-on.svg';
 import CheckboxDefault from './checkboxDefault.svg';
 import CheckboxSelected from './checkboxSelected.svg';
 import PickerDown from './pickerDown.svg';
+import Placeholder from './Placeholder.svg';
 
-export { Arrow, Add, Info, EyeOff, EyeOn, CheckboxDefault, CheckboxSelected, PickerDown };
+export { Arrow, Add, Info, EyeOff, EyeOn, CheckboxDefault, CheckboxSelected, PickerDown, Placeholder };
