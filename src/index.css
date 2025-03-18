@@ -32,6 +32,7 @@
   --color-gray-dark: #626262;
   --color-gray-x-dark: #313131;
   --color-gray-2x-dark: #121212;
+  --color-gray-dark-opacity: rgba(0, 0, 0, 0.9);
 
   --color-feedback-success-light: #daf1e2;
   --color-feedback-success-medium: #379559;
