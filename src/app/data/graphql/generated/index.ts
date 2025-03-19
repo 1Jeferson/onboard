@@ -241,6 +241,15 @@ export type UserInput = {
   password: Scalars['String']['input'];
 };
 
+export type CreateBoardMutationVariables = Exact<{
+  data: BoardInput;
+}>;
+
+export type CreateBoardMutation = {
+  __typename?: 'Mutation';
+  createBoard: { __typename?: 'Board'; id: string; name: string };
+};
+
 export type LoginMutationVariables = Exact<{
   data: LoginInput;
 }>;
@@ -267,6 +276,46 @@ export type CreateUserMutation = {
   };
 };
 
+export const CreateBoardDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'mutation',
+      name: { kind: 'Name', value: 'CreateBoard' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'data' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'BoardInput' } } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'createBoard' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'data' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'data' } },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CreateBoardMutation, CreateBoardMutationVariables>;
 export const LoginDocument = {
   kind: 'Document',
   definitions: [

@@ -162,8 +162,8 @@ const RegisterPage = () => {
 
           {serverError && <InputCaption className='text-center'>{serverError}</InputCaption>}
 
-          <Button type='submit' variant='primary' disabled={loading}>
-            {loading ? authStrings.loading : authStrings.button.register}
+          <Button type='submit' variant='primary' loading={loading} disabled={loading}>
+            {authStrings.button.register}
           </Button>
 
           <Text className='text-center' variant='b2'>
