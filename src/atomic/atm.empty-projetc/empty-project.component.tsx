@@ -8,11 +8,11 @@ import { Button } from '../atm.button';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { BoardInput } from '@/app/data/graphql/generated';
 import { createBoardSchema } from '@/app/modules/board/board.schema';
-import { useCreateBoard } from '@/app/domain/auth/create-board.use-case';
 import { TextInput } from '../atm.text-input';
 import { InputCaption } from '../atm.typography';
 import { boardStrings } from '@/app/modules/board/board.strings';
 import { Modal } from '../atm.modal';
+import { useCreateBoard } from '@/app/domain/boards/create-board.use-case';
 
 const EmptyProject = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
