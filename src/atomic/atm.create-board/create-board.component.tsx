@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import { Placeholder } from '../assets/icons';
-import { Text } from '../atm.typography';
-import { Button } from '../atm.button';
 import { Modal } from '../atm.modal';
 import { useCreateBoard } from '@/app/domain/boards/create-board.use-case';
 import { BoardInput } from '@/app/data/graphql/generated';
-import { homeStrings } from '@/app/modules/home/home.strings';
-import { createBoardStrings } from '../atm.create-board/create-board.strings';
-import { CreateBoardProps } from '../atm.create-board/create-board.component';
+import { Add } from '../assets/icons';
+import { Text } from '../atm.typography';
+import { createBoardStrings } from './create-board.strings';
 import { BoardForm } from '../atm.board-form';
 
-const EmptyProject = ({ onCreate }: CreateBoardProps) => {
+export interface CreateBoardProps {
+  onCreate: () => void;
+}
+
+const CreateBoard = ({ onCreate }: CreateBoardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
@@ -31,24 +32,22 @@ const EmptyProject = ({ onCreate }: CreateBoardProps) => {
   };
 
   return (
-    <div className='flex flex-col items-center py-3x-large gap-medium'>
-      <Placeholder />
-      <div className='text-center flex flex-col gap-2x-small'>
-        <Text variant='h3'>{homeStrings.noProject}</Text>
-        <Text variant='b1'>{homeStrings.noProjectCreated}</Text>
-      </div>
-
-      <div>
-        <Button variant='cta' onClick={() => setIsModalOpen(true)}>
-          {createBoardStrings.button.createProject}
-        </Button>
+    <>
+      <div
+        className='cursor-pointer rounded-large p-small flex flex-col items-center'
+        onClick={() => setIsModalOpen(true)}
+      >
+        <div className='w-full h-3x-large flex flex-col gap-2x-small justify-center items-center'>
+          <Add />
+          <Text variant='link'>{createBoardStrings.button.createProject}</Text>
+        </div>
       </div>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <BoardForm onSubmit={handleSubmit} loading={loading} serverError={serverError} />
       </Modal>
-    </div>
+    </>
   );
 };
 
-export default EmptyProject;
+export default CreateBoard;
