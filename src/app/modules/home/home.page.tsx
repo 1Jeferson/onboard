@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text } from '@/atomic/atm.typography';
+import { InputCaption, Text } from '@/atomic/atm.typography';
 import { homeStrings } from './home.strings';
 import { useListBoards } from '@/app/domain/boards/list-boards.use-case';
 import { authStrings } from '../auth/auth.strings';
@@ -11,8 +11,12 @@ import { BoardCard } from '@/atomic/atm.board-card';
 const HomePage = () => {
   const [offset, setOffset] = useState(0);
   const limit = 6;
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const { boards, loading, refetch } = useListBoards({
+    onError(error) {
+      setServerError(error.message);
+    },
     variables: { pageInput: { offset, limit: limit - 1 } },
   });
 
@@ -32,6 +36,9 @@ const HomePage = () => {
   return (
     <>
       <Text variant='h1'>{homeStrings.allProjects}</Text>
+
+      {serverError && <InputCaption className='text-center'>{serverError}</InputCaption>}
+
       <div className='flex flex-col mt-2x-small items-center min-h-screen'>
         {loading ? (
           <div>{authStrings.loading}</div>
