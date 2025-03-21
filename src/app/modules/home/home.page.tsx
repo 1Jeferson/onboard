@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { InputCaption, Text } from '@/atomic/atm.typography';
 import { homeStrings } from './home.strings';
 import { useListBoards } from '@/app/domain/boards/list-boards.use-case';
-import { authStrings } from '../auth/auth.strings';
 import { EmptyProject } from '@/atomic/atm.empty-projetc';
 import { CreateBoard } from '@/atomic/atm.create-board';
 import { Pagination } from '@/atomic/atm.pagination';
 import { BoardCard } from '@/atomic/atm.board-card';
+import { CardSkeleton } from '@/atomic/atm.card-skeleton';
 
 const HomePage = () => {
   const [offset, setOffset] = useState(0);
@@ -41,7 +41,11 @@ const HomePage = () => {
 
       <div className='flex flex-col mt-2x-small items-center min-h-screen'>
         {loading ? (
-          <div>{authStrings.loading}</div>
+          <div className='grid grid-cols-3 gap-x-small w-full'>
+            {Array.from({ length: 6 }).map((_, index) => (
+              <CardSkeleton key={index} />
+            ))}
+          </div>
         ) : boards?.nodes.length ? (
           <>
             <div className='grid grid-cols-3 gap-x-small w-full'>
