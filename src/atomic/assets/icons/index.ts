@@ -8,5 +8,6 @@ import CheckboxSelected from './checkboxSelected.svg';
 import PickerDown from './pickerDown.svg';
 import Placeholder from './placeholder.svg';
 import Close from './closeOutline.svg';
+import Edit from './edit.svg';
 
-export { Arrow, Add, Info, EyeOff, EyeOn, CheckboxDefault, CheckboxSelected, PickerDown, Placeholder, Close };
+export { Arrow, Add, Info, EyeOff, EyeOn, CheckboxDefault, CheckboxSelected, PickerDown, Placeholder, Close, Edit };
