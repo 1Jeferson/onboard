@@ -25,7 +25,7 @@ function App() {
           </Route>
         </Route>
       </Routes>
-      <Toaster />
+      <Toaster richColors position='bottom-left' closeButton />
     </ApolloProvider>
   );
 }
