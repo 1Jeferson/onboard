@@ -2,17 +2,20 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { kanbanRoutes } from '@/app/modules/home';
 import { Text } from '../atm.typography';
-import { Edit } from '../assets/icons';
+import { Edit, Delete } from '../assets/icons';
 import { BoardUpdate } from '../atm.board-update';
+import { BoardDelete } from '../atm.delete-board';
 
 interface BoardCardProps {
   id: string;
   name: string;
   imageUrl?: string;
+  refetch: () => void;
 }
 
-const BoardCard = ({ id, name, imageUrl }: BoardCardProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const BoardCard = ({ id, name, imageUrl, refetch }: BoardCardProps) => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -21,7 +24,12 @@ const BoardCard = ({ id, name, imageUrl }: BoardCardProps) => {
 
   const handleEditClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsModalOpen(true);
+    setIsEditModalOpen(true);
+  };
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsDeleteModalOpen(true);
   };
 
   return (
@@ -36,12 +44,26 @@ const BoardCard = ({ id, name, imageUrl }: BoardCardProps) => {
           {name}
         </Text>
 
-        <button className='cursor-pointer' onClick={handleEditClick}>
-          <Edit />
-        </button>
+        <div className='flex gap-x-2x-small'>
+          <button className='cursor-pointer' onClick={handleEditClick}>
+            <Edit />
+          </button>
+
+          <button className='cursor-pointer' onClick={handleDeleteClick}>
+            <Delete />
+          </button>
+        </div>
       </div>
 
-      <BoardUpdate id={id} name={name} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <BoardUpdate id={id} name={name} isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} />
+
+      <BoardDelete
+        id={id}
+        isOpen={isDeleteModalOpen}
+        name={name}
+        onClose={() => setIsDeleteModalOpen(false)}
+        refetch={refetch}
+      />
     </div>
   );
 };

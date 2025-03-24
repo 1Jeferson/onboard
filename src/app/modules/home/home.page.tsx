@@ -54,7 +54,7 @@ const HomePage = () => {
               </div>
 
               {boards.nodes.map((board) => (
-                <BoardCard key={board.id} id={board.id} name={board.name} />
+                <BoardCard key={board.id} id={board.id} name={board.name} refetch={refetch} />
               ))}
             </div>
 
