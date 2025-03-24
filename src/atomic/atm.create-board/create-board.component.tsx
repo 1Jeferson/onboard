@@ -6,6 +6,7 @@ import { Add } from '../assets/icons';
 import { Text } from '../atm.typography';
 import { createBoardStrings } from './create-board.strings';
 import { BoardForm } from '../atm.board-form';
+import { toast } from 'sonner';
 
 export interface CreateBoardProps {
   onCreate: () => void;
@@ -17,12 +18,12 @@ const CreateBoard = ({ onCreate }: CreateBoardProps) => {
 
   const { createBoard, loading } = useCreateBoard({
     onCompleted: () => {
-      setServerError(null);
+      toast.success(createBoardStrings.successMessage);
       setIsModalOpen(false);
       onCreate();
     },
-    onError: (error) => {
-      setServerError(error.message);
+    onError: () => {
+      toast.error(createBoardStrings.errorMessage);
     },
   });
 

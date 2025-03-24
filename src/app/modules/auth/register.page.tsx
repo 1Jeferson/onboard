@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { useRegister } from '@/app/domain/auth/register.use-case';
 import { kanbanRoutes } from '../home';
 import { Checkbox } from '@/atomic/atm.checkbox';
+import { toast } from 'sonner';
 
 interface RegisterFormInput extends UserInput {
   passwordConfirmation: string;
@@ -36,9 +37,9 @@ const RegisterPage = () => {
   const [serverError, setServerError] = useState<string | null>(null);
 
   const { register, loading } = useRegister({
-    onCompleted(data) {
+    onCompleted() {
+      toast.success(authStrings.successRegister);
       navigate(kanbanRoutes.home);
-      setServerError(null);
     },
     onError(error) {
       setServerError(error.message);

@@ -9,6 +9,7 @@ import { homeStrings } from '@/app/modules/home/home.strings';
 import { createBoardStrings } from '../atm.create-board/create-board.strings';
 import { CreateBoardProps } from '../atm.create-board/create-board.component';
 import { BoardForm } from '../atm.board-form';
+import { toast } from 'sonner';
 
 const EmptyProject = ({ onCreate }: CreateBoardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,12 +17,12 @@ const EmptyProject = ({ onCreate }: CreateBoardProps) => {
 
   const { createBoard, loading } = useCreateBoard({
     onCompleted: () => {
-      setServerError(null);
+      toast.success(createBoardStrings.successMessage);
       setIsModalOpen(false);
       onCreate();
     },
-    onError: (error) => {
-      setServerError(error.message);
+    onError: () => {
+      toast.error(createBoardStrings.errorMessage);
     },
   });
 
