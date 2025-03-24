@@ -276,6 +276,15 @@ export type CreateUserMutation = {
   };
 };
 
+export type UpdateBoardMutationVariables = Exact<{
+  data: BoardUpdateInput;
+}>;
+
+export type UpdateBoardMutation = {
+  __typename?: 'Mutation';
+  updateBoard: { __typename?: 'Board'; id: string; name: string };
+};
+
 export type BoardsQueryVariables = Exact<{
   pageInput: PageInput;
 }>;
@@ -438,6 +447,46 @@ export const CreateUserDocument = {
     },
   ],
 } as unknown as DocumentNode<CreateUserMutation, CreateUserMutationVariables>;
+export const UpdateBoardDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'mutation',
+      name: { kind: 'Name', value: 'UpdateBoard' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'data' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'BoardUpdateInput' } } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'updateBoard' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'data' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'data' } },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateBoardMutation, UpdateBoardMutationVariables>;
 export const BoardsDocument = {
   kind: 'Document',
   definitions: [

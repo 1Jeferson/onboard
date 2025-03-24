@@ -3,5 +3,6 @@ export const createBoardStrings = {
   namePlaceholder: 'Nome do projeto',
   button: {
     createProject: 'Criar projeto',
+    editProject: 'Editar projeto',
   },
 };
