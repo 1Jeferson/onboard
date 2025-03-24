@@ -16,6 +16,7 @@ export const authStrings = {
   linkPolicy: 'Política de privacidade',
   login: 'Faça login',
   register: 'Cadastre-se',
+  successRegister: 'Cadastro realizado com sucesso!',
   haveAnAccount: 'Já possui uma conta?',
   loading: 'Carregando',
   button: {
