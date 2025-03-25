@@ -7,7 +7,6 @@ export const useDeleteBoard = ({
 }: {
   onCompleted?: (data: DeleteBoardMutation) => void;
   onError?: (error: Error) => void;
-  refetch: () => void;
 }) => {
   const [deleteBoardMutation, { loading }] = useMutation<DeleteBoardMutation, DeleteBoardMutationVariables>(
     DeleteBoardDocument,

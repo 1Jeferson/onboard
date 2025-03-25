@@ -23,7 +23,6 @@ const BoardDelete = ({ id, isOpen, name, onClose, refetch }: DeleteBoardProps) =
     onError() {
       toast.error(deleteBoardStrings.errorMessage);
     },
-    refetch,
   });
 
   const handleDelete = () => {
@@ -40,10 +39,10 @@ const BoardDelete = ({ id, isOpen, name, onClose, refetch }: DeleteBoardProps) =
 
         <div className='flex justify-end gap-small'>
           <Button variant='primaryDestructive' onClick={onClose} disabled={loading}>
-            Cancelar
+            {deleteBoardStrings.cancel}
           </Button>
           <Button variant='primary' onClick={handleDelete} loading={loading}>
-            Confirmar
+            {deleteBoardStrings.confirm}
           </Button>
         </div>
       </div>
