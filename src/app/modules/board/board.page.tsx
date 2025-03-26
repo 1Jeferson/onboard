@@ -4,11 +4,11 @@ import { Column } from '@/atomic/atm.column';
 import { Text } from '@/atomic/atm.typography';
 import { useParams } from 'react-router-dom';
 
+const columns = [CardColumns.ToDo, CardColumns.InProgress, CardColumns.InReview, CardColumns.Done];
+
 const BoardPage = () => {
   const { boardId } = useParams<{ boardId: string }>();
   const { data } = useBoard({ variables: { boardId: boardId || '' } });
-
-  const columns = [CardColumns.ToDo, CardColumns.InProgress, CardColumns.InReview, CardColumns.Done];
 
   return (
     <div className='w-full max-w-2xlarge p-3x-small sm:py-2x-small sm:px-2x-large'>
