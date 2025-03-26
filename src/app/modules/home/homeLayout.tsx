@@ -7,7 +7,7 @@ const HomeLayout = () => {
 
   return (
     <div className='flex flex-col h-screen items-center'>
-      <nav className='w-full max-w-2xlarge flex items-center justify-between gap-medium p-3x-small sm:py-2x-small sm:px-2x-large'>
+      <nav className='w-full max-w-2xlarge flex items-center justify-between gap-medium p-3x-small sm:py-2x-small sm:px-2x-large bg-gray-white'>
         <img src='/logo.png' alt='Logo Instaq' className='sm:w-large sm:h-large' />
 
         <div>
@@ -18,7 +18,7 @@ const HomeLayout = () => {
         </div>
       </nav>
 
-      <div className='flex-1 w-full max-w-2xlarge p-x-small sm:py-large sm:px-2x-large'>
+      <div className='flex-1 w-full flex flex-col items-center justify-center p-x-small sm:py-large sm:px-2x-large bg-gray-x-light'>
         <Outlet />
       </div>
     </div>

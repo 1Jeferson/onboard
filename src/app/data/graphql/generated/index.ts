@@ -291,6 +291,29 @@ export type UpdateBoardMutation = {
   updateBoard: { __typename?: 'Board'; id: string; name: string };
 };
 
+export type BoardQueryVariables = Exact<{
+  boardId: Scalars['String']['input'];
+}>;
+
+export type BoardQuery = {
+  __typename?: 'Query';
+  board: {
+    __typename?: 'BoardWithCard';
+    id: string;
+    name: string;
+    cards: Array<{
+      __typename?: 'Card';
+      id: string;
+      createdAt: any;
+      name: string;
+      description?: string | null;
+      points?: number | null;
+      order: number;
+      column: CardColumns;
+    }>;
+  };
+};
+
 export type BoardsQueryVariables = Exact<{
   pageInput: PageInput;
 }>;
@@ -530,6 +553,62 @@ export const UpdateBoardDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateBoardMutation, UpdateBoardMutationVariables>;
+export const BoardDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'Board' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'boardId' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'board' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'boardId' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'boardId' } },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'cards' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'points' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'order' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'column' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<BoardQuery, BoardQueryVariables>;
 export const BoardsDocument = {
   kind: 'Document',
   definitions: [
