@@ -5,6 +5,7 @@ import { Layout, LoginPage, RegisterPage, authRoutes } from './app/modules/auth'
 import { HomeLayout, HomePage, kanbanRoutes } from './app/modules/home';
 import { AuthGuard, LoginRedirect } from './app/guards';
 import { BoardPage } from './app/modules/board';
+import { Toaster } from './components/ui/sonner';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           </Route>
         </Route>
       </Routes>
+      <Toaster richColors position='bottom-left' closeButton />
     </ApolloProvider>
   );
 }

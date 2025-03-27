@@ -3,6 +3,8 @@ import { Modal } from '../atm.modal';
 import { useUpdateBoard } from '@/app/domain/boards/update-board.use-case';
 import { BoardInput } from '@/app/data/graphql/generated';
 import { UpdateBoardForm } from '../atm.update-board-form';
+import { toast } from 'sonner';
+import { createBoardStrings } from '../atm.create-board/create-board.strings';
 
 interface BoardUpdateProps {
   id: string;
@@ -16,11 +18,11 @@ const BoardUpdate = ({ id, name, isOpen, onClose }: BoardUpdateProps) => {
 
   const { updateBoard, loading } = useUpdateBoard({
     onCompleted: () => {
-      setServerError(null);
+      toast.success(createBoardStrings.updateMessage);
       onClose();
     },
-    onError: (error) => {
-      setServerError(error.message);
+    onError: () => {
+      toast.error(createBoardStrings.errorUpdateMessage);
     },
   });
 
