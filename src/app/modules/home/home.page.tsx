@@ -35,11 +35,12 @@ const HomePage = () => {
 
   return (
     <>
-      <Text variant='h1'>{homeStrings.allProjects}</Text>
-
+      <div className='w-full max-w-2xlarge flex items-center justify-between gap-medium p-3x-small sm:py-2x-small sm:px-2x-large '>
+        <Text variant='h1'>{homeStrings.allProjects}</Text>
+      </div>
       {serverError && <InputCaption className='text-center'>{serverError}</InputCaption>}
 
-      <div className='flex flex-col mt-2x-small items-center min-h-screen'>
+      <div className='flex flex-col mt-2x-small items-center min-h-screen bg-gray-white rounded-large'>
         {loading ? (
           <div className='grid grid-cols-3 gap-x-small w-full'>
             {Array.from({ length: 6 }).map((_, index) => (
@@ -54,7 +55,7 @@ const HomePage = () => {
               </div>
 
               {boards.nodes.map((board) => (
-                <BoardCard key={board.id} id={board.id} name={board.name} />
+                <BoardCard key={board.id} id={board.id} name={board.name} refetch={refetch} />
               ))}
             </div>
 
