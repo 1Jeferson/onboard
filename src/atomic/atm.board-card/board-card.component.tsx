@@ -33,7 +33,10 @@ const BoardCard = ({ id, name, imageUrl, refetch }: BoardCardProps) => {
   };
 
   return (
-    <div className='rounded-large p-x-small flex flex-col gap-2x-small' onClick={handleClick}>
+    <div
+      className='rounded-large p-x-small flex flex-col gap-2x-small border-1 border-gray-light'
+      onClick={handleClick}
+    >
       <img
         src={imageUrl || './CardDefault.png'}
         alt={name}

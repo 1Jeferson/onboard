@@ -24,14 +24,14 @@ const Column = ({ column }: ColumnsProps) => {
   });
 
   return (
-    <div className='flex flex-col justify-between p-small bg-gray-white rounded-large min-w-[330px] h-[660px]'>
+    <div className='flex flex-col justify-between p-small bg-gray-white rounded-large min-w-[350px] h-[80vh]'>
       <div className='flex justify-between items-center pb-2x-small'>
         <Text variant='b1' className={columnStyle({ status: column })}>
           {cardColumnsPT[column]}
         </Text>
       </div>
 
-      <div className='bg-gray-light w-full h-full p-small rounded-small flex flex-col gap-small overflow-y-auto'>
+      <div className='bg-gray-light w-full h-full p-small rounded-small flex flex-col gap-small overflow-y-auto custom-scrollbar'>
         {data?.cards.filter((card) => card.column === column).map((card) => <CardKanban key={card.id} card={card} />)}
       </div>
 

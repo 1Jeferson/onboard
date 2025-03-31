@@ -35,7 +35,7 @@ const CreateBoard = ({ onCreate }: CreateBoardProps) => {
   return (
     <>
       <div
-        className='cursor-pointer rounded-large p-small flex flex-col items-center'
+        className='cursor-pointer rounded-large p-small flex flex-col items-center border-1 border-gray-light'
         onClick={() => setIsModalOpen(true)}
       >
         <div className='w-full h-3x-large flex flex-col gap-2x-small justify-center items-center'>
