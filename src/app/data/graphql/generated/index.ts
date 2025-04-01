@@ -291,6 +291,30 @@ export type UpdateBoardMutation = {
   updateBoard: { __typename?: 'Board'; id: string; name: string };
 };
 
+export type UpdateCardOrderMutationVariables = Exact<{
+  data: Array<UpdateCardOrderInput> | UpdateCardOrderInput;
+}>;
+
+export type UpdateCardOrderMutation = { __typename?: 'Mutation'; updateCardOrder: string };
+
+export type UpdateCardMutationVariables = Exact<{
+  data: UpdateCardInput;
+}>;
+
+export type UpdateCardMutation = {
+  __typename?: 'Mutation';
+  updateCard: {
+    __typename?: 'Card';
+    id: string;
+    createdAt: any;
+    name: string;
+    description?: string | null;
+    points?: number | null;
+    order: number;
+    column: CardColumns;
+  };
+};
+
 export type BoardQueryVariables = Exact<{
   boardId: Scalars['String']['input'];
 }>;
@@ -571,6 +595,93 @@ export const UpdateBoardDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateBoardMutation, UpdateBoardMutationVariables>;
+export const UpdateCardOrderDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'mutation',
+      name: { kind: 'Name', value: 'UpdateCardOrder' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'data' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: { kind: 'NamedType', name: { kind: 'Name', value: 'UpdateCardOrderInput' } },
+              },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'updateCardOrder' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'data' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'data' } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateCardOrderMutation, UpdateCardOrderMutationVariables>;
+export const UpdateCardDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'mutation',
+      name: { kind: 'Name', value: 'UpdateCard' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'data' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'UpdateCardInput' } } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'updateCard' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'data' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'data' } },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'points' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'order' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'column' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateCardMutation, UpdateCardMutationVariables>;
 export const BoardDocument = {
   kind: 'Document',
   definitions: [
