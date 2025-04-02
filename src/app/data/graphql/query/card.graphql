@@ -1,0 +1,11 @@
+query Card($boardId: String!) {
+  cards(boardId: $boardId) {
+    id
+    createdAt
+    name
+    description
+    points
+    order
+    column
+  }
+}

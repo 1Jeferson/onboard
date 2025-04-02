@@ -314,6 +314,24 @@ export type BoardQuery = {
   };
 };
 
+export type CardQueryVariables = Exact<{
+  boardId: Scalars['String']['input'];
+}>;
+
+export type CardQuery = {
+  __typename?: 'Query';
+  cards: Array<{
+    __typename?: 'Card';
+    id: string;
+    createdAt: any;
+    name: string;
+    description?: string | null;
+    points?: number | null;
+    order: number;
+    column: CardColumns;
+  }>;
+};
+
 export type BoardsQueryVariables = Exact<{
   pageInput: PageInput;
 }>;
@@ -609,6 +627,51 @@ export const BoardDocument = {
     },
   ],
 } as unknown as DocumentNode<BoardQuery, BoardQueryVariables>;
+export const CardDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'Card' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'boardId' } },
+          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'cards' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'boardId' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'boardId' } },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'points' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'order' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'column' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CardQuery, CardQueryVariables>;
 export const BoardsDocument = {
   kind: 'Document',
   definitions: [
