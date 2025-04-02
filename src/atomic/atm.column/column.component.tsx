@@ -1,20 +1,25 @@
+import { useState } from 'react';
 import { Card, CardColumns } from '@/app/data/graphql/generated';
 import { Text } from '../atm.typography';
 import { cardColumnsPT, columnStrings } from './column.strings';
-import { LinkButton } from '../atm.link-button';
 import { columnStyle } from './column.style';
 import { useDroppable } from '@dnd-kit/core';
 import { CardKanban } from '../atm.card-kanban';
+import { Button } from '../atm.button';
+import { Add } from '../assets/icons';
+import { CreateCard } from '../atm.create-card';
 
 interface ColumnsProps {
   column: CardColumns;
   cards: Card[];
+  boardId: string;
+  refetch: () => void;
 }
 
-const Column = ({ column, cards = [] }: ColumnsProps) => {
-  const { setNodeRef } = useDroppable({
-    id: column,
-  });
+const Column = ({ column, cards = [], boardId, refetch }: ColumnsProps) => {
+  const { setNodeRef } = useDroppable({ id: column });
+
+  const [isCreateCardOpen, setIsCreateCardOpen] = useState(false);
 
   return (
     <div className='flex flex-col justify-between p-small bg-gray-white rounded-large min-w-[350px] h-[80vh]'>
@@ -34,10 +39,23 @@ const Column = ({ column, cards = [] }: ColumnsProps) => {
       </div>
 
       <div>
-        <LinkButton icon='plus' variant='link'>
+        <Button variant='link' onClick={() => setIsCreateCardOpen(true)}>
+          <Add />
           {columnStrings.addCard}
-        </LinkButton>
+        </Button>
       </div>
+
+      <CreateCard
+        cards={cards}
+        isOpen={isCreateCardOpen}
+        onClose={() => setIsCreateCardOpen(false)}
+        onCreate={() => {
+          refetch();
+          setIsCreateCardOpen(false);
+        }}
+        boardId={boardId}
+        column={column}
+      />
     </div>
   );
 };
