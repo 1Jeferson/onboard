@@ -1,26 +1,19 @@
-import { CardColumns } from '@/app/data/graphql/generated';
+import { Card, CardColumns } from '@/app/data/graphql/generated';
 import { Text } from '../atm.typography';
 import { cardColumnsPT, columnStrings } from './column.strings';
 import { LinkButton } from '../atm.link-button';
 import { columnStyle } from './column.style';
-import { useParams } from 'react-router-dom';
-import { useListCards } from '@/app/domain/cards/list.cards.use-case';
-import { toast } from 'sonner';
+import { useDroppable } from '@dnd-kit/core';
 import { CardKanban } from '../atm.card-kanban';
-import { cardKanbanStrings } from '../atm.card-kanban/card-kanban.strings';
 
 interface ColumnsProps {
   column: CardColumns;
+  cards: Card[];
 }
 
-const Column = ({ column }: ColumnsProps) => {
-  const { boardId } = useParams<{ boardId: string }>();
-
-  const { data } = useListCards({
-    variables: { boardId: boardId ?? '', column },
-    onError: () => {
-      toast.error(cardKanbanStrings.error);
-    },
+const Column = ({ column, cards = [] }: ColumnsProps) => {
+  const { setNodeRef } = useDroppable({
+    id: column,
   });
 
   return (
@@ -31,8 +24,13 @@ const Column = ({ column }: ColumnsProps) => {
         </Text>
       </div>
 
-      <div className='bg-gray-light w-full h-full p-small rounded-small flex flex-col gap-small overflow-y-auto custom-scrollbar'>
-        {data?.cards.filter((card) => card.column === column).map((card) => <CardKanban key={card.id} card={card} />)}
+      <div
+        ref={setNodeRef}
+        className='bg-gray-light w-full h-full p-small rounded-small flex flex-col gap-small overflow-y-auto custom-scrollbar'
+      >
+        {cards.map((card) => (
+          <CardKanban key={card.id} card={card} column={column} />
+        ))}
       </div>
 
       <div>
