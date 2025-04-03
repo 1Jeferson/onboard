@@ -3,6 +3,8 @@ import { Edit } from '../assets/icons';
 import { Text } from '../atm.typography';
 import { Card, CardColumns } from '@/app/data/graphql/generated';
 import { useSortable } from '@dnd-kit/sortable';
+import { useState } from 'react';
+import { UpdateCard } from '../atm.update-card';
 
 interface CardProps {
   column?: CardColumns;
@@ -12,6 +14,7 @@ interface CardProps {
 const CardKanban = ({ card, column }: CardProps) => {
   const date = new Date(card.createdAt).toLocaleDateString('pt-br');
   const { name } = useUserStore();
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const { attributes, listeners, isDragging, setNodeRef } = useSortable({
     id: card.id,
@@ -22,15 +25,18 @@ const CardKanban = ({ card, column }: CardProps) => {
     opacity: isDragging ? 0.7 : 1,
   };
 
+  const handleEditClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsEditModalOpen(true);
+  };
+
   return (
     <div
       ref={setNodeRef}
       style={style}
-      {...attributes}
-      {...listeners}
       className='flex flex-col gap-x-small p-x-small bg-gray-white rounded-medium cursor-grab'
     >
-      <div className='flex flex-col gap-x-small'>
+      <div {...attributes} {...listeners} className='flex flex-col gap-x-small'>
         <Text variant='h4'>{card.name}</Text>
         <div className='flex items-center gap-2x-small'>
           <img src='/Perfil2.png' alt='Avatar' className='sm:w-medium sm:h-medium' />
@@ -39,11 +45,13 @@ const CardKanban = ({ card, column }: CardProps) => {
       </div>
 
       <div className='flex justify-between items-center mt-x-small'>
-        <Text variant='b2' className='flex items-center gap-3x-small cursor-pointer'>
+        <button className='cursor-pointer' onClick={handleEditClick}>
           <Edit />
-        </Text>
+        </button>
         <Text variant='b2'>{date}</Text>
       </div>
+
+      <UpdateCard isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} initialData={card} />
     </div>
   );
 };
