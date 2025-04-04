@@ -1,5 +1,5 @@
 export const deleteCardStrings = {
-  success: 'Card deletado com sucesso!',
+  success: 'Tarefa deletada com sucesso!',
   error: 'Erro ao deletar o card',
   confirm: 'Confirmar',
   cancel: 'Cancelar',
