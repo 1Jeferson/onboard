@@ -10,11 +10,11 @@ export const useBoard = ({
   onCompleted?: (data: BoardQuery) => void;
   onError?: (error: Error) => void;
 }) => {
-  const { data, loading } = useQuery<BoardQuery, BoardQueryVariables>(BoardDocument, {
+  const { data, loading, refetch } = useQuery<BoardQuery, BoardQueryVariables>(BoardDocument, {
     variables,
     onCompleted,
     onError,
   });
 
-  return { data, loading };
+  return { data, loading, refetch };
 };

@@ -17,7 +17,7 @@ const columns = [CardColumns.ToDo, CardColumns.InProgress, CardColumns.InReview,
 
 const BoardPage = () => {
   const { boardId } = useParams<{ boardId: string }>();
-  const { data } = useBoard({ variables: { boardId: boardId || '' } });
+  const { data, refetch } = useBoard({ variables: { boardId: boardId || '' } });
 
   const [cardList, setCardList] = useState<Card[]>(data?.board.cards || []);
   const [draggedCard, setDraggedCard] = useState<Card | null>(null);
@@ -94,7 +94,13 @@ const BoardPage = () => {
         <SortableContext strategy={verticalListSortingStrategy} items={cardList.map((card) => card.id)}>
           <div className='flex gap-x-x-small overflow-x-auto'>
             {columns.map((column) => (
-              <Column key={column} column={column} cards={cardList.filter((card) => card.column === column)} />
+              <Column
+                boardId={data?.board.id || ''}
+                refetch={refetch}
+                key={column}
+                column={column}
+                cards={cardList.filter((card) => card.column === column)}
+              />
             ))}
           </div>
         </SortableContext>
