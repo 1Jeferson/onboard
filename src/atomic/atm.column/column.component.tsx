@@ -34,7 +34,7 @@ const Column = ({ column, cards = [], boardId, refetch }: ColumnsProps) => {
         className='bg-gray-light w-full h-full p-small rounded-small flex flex-col gap-small overflow-y-auto custom-scrollbar'
       >
         {cards.map((card) => (
-          <CardKanban key={card.id} card={card} column={column} />
+          <CardKanban key={card.id} card={card} column={column} refetch={refetch} />
         ))}
       </div>
 
