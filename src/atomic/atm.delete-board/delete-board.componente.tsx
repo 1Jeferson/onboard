@@ -16,12 +16,12 @@ interface DeleteBoardProps {
 const BoardDelete = ({ id, isOpen, name, onClose, refetch }: DeleteBoardProps) => {
   const { deleteBoard, loading } = useDeleteBoard({
     onCompleted() {
-      toast.success(deleteBoardStrings.successMessage);
+      toast.success(deleteBoardStrings.success);
       refetch();
       onClose();
     },
     onError() {
-      toast.error(deleteBoardStrings.errorMessage);
+      toast.error(deleteBoardStrings.error);
     },
   });
 

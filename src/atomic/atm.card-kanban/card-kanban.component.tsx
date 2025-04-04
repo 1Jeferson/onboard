@@ -1,20 +1,23 @@
 import { useUserStore } from '@/app/store';
-import { Edit } from '../assets/icons';
+import { Delete, Edit } from '../assets/icons';
 import { Text } from '../atm.typography';
 import { Card, CardColumns } from '@/app/data/graphql/generated';
 import { useSortable } from '@dnd-kit/sortable';
 import { useState } from 'react';
 import { UpdateCard } from '../atm.update-card';
+import { DeleteCard } from '../atm.delete-card';
 
 interface CardProps {
   column?: CardColumns;
   card: Card;
+  refetch: () => void;
 }
 
-const CardKanban = ({ card, column }: CardProps) => {
+const CardKanban = ({ card, column, refetch }: CardProps) => {
   const date = new Date(card.createdAt).toLocaleDateString('pt-br');
   const { name } = useUserStore();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const { attributes, listeners, isDragging, setNodeRef } = useSortable({
     id: card.id,
@@ -28,6 +31,11 @@ const CardKanban = ({ card, column }: CardProps) => {
   const handleEditClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsEditModalOpen(true);
+  };
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsDeleteModalOpen(true);
   };
 
   return (
@@ -44,14 +52,27 @@ const CardKanban = ({ card, column }: CardProps) => {
         </div>
       </div>
 
-      <div className='flex justify-between items-center mt-x-small'>
-        <button className='cursor-pointer' onClick={handleEditClick}>
-          <Edit />
-        </button>
+      <div className='flex gap-x-2x-small justify-between'>
+        <div className='flex gap-x-3x-small'>
+          <button className='cursor-pointer' onClick={handleEditClick}>
+            <Edit />
+          </button>
+
+          <button className='cursor-pointer' onClick={handleDeleteClick}>
+            <Delete />
+          </button>
+        </div>
         <Text variant='b2'>{date}</Text>
       </div>
 
       <UpdateCard isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)} initialData={card} />
+
+      <DeleteCard
+        id={card.id}
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        refetch={refetch}
+      />
     </div>
   );
 };
