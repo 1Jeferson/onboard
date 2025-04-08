@@ -1,10 +1,23 @@
 import { Skeleton } from '@/components/ui/skeleton';
+import { cardSkeletonStyle } from './card-skeleton.styles';
+
+const { container, title, avatarWrapper, avatar, name, footer, icons, icon, date } = cardSkeletonStyle();
 
 const CardSkeleton = () => {
   return (
-    <div className='rounded-large p-x-small flex flex-col gap-2x-small bg-gray-medium'>
-      <Skeleton className='w-full h-3x-large object-cover rounded-medium bg-gray-x-light' />
-      <Skeleton className='h-small mx-x-small bg-gray-x-light' />
+    <div className={container()}>
+      <Skeleton className={title()} />
+      <div className={avatarWrapper()}>
+        <Skeleton className={avatar()} />
+        <Skeleton className={name()} />
+      </div>
+      <div className={footer()}>
+        <div className={icons()}>
+          <Skeleton className={icon()} />
+          <Skeleton className={icon()} />
+        </div>
+        <Skeleton className={date()} />
+      </div>
     </div>
   );
 };

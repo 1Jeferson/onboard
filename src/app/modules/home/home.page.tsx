@@ -6,7 +6,7 @@ import { EmptyProject } from '@/atomic/atm.empty-projetc';
 import { CreateBoard } from '@/atomic/atm.create-board';
 import { Pagination } from '@/atomic/atm.pagination';
 import { BoardCard } from '@/atomic/atm.board-card';
-import { CardSkeleton } from '@/atomic/atm.card-skeleton';
+import { BoardSkeleton } from '@/atomic/atm.board-skeleton';
 
 const HomePage = () => {
   const [offset, setOffset] = useState(0);
@@ -45,7 +45,7 @@ const HomePage = () => {
         {loading ? (
           <div className='grid grid-cols-3 gap-x-small w-full'>
             {Array.from({ length: 6 }).map((_, index) => (
-              <CardSkeleton key={index} />
+              <BoardSkeleton key={index} />
             ))}
           </div>
         ) : boards?.nodes.length ? (

@@ -1,5 +1,5 @@
 export const cardKanbanStrings = {
-  loadingError: 'Erro ao carregar os cards',
-  updateError: 'Erro ao atualizar o card',
-  updateOrderError: 'Erro ao atualizar a ordem dos cards na coluna',
+  loadingError: 'Erro ao carregar as tarefas',
+  updateError: 'Erro ao atualizar a tarefa',
+  updateOrderError: 'Erro ao atualizar a ordem das tarefas na coluna',
 };

@@ -8,6 +8,8 @@ import { CardKanban } from '../atm.card-kanban';
 import { Button } from '../atm.button';
 import { Add } from '../assets/icons';
 import { CreateCard } from '../atm.create-card';
+import { useListCards } from '@/app/domain/cards/list-cards.use-case';
+import { CardSkeleton } from '../atm.card-skeleton';
 
 interface ColumnsProps {
   column: CardColumns;
@@ -18,6 +20,8 @@ interface ColumnsProps {
 
 const Column = ({ column, cards = [], boardId, refetch }: ColumnsProps) => {
   const { setNodeRef } = useDroppable({ id: column });
+
+  const { loading } = useListCards({ variables: { boardId, column } });
 
   const [isCreateCardOpen, setIsCreateCardOpen] = useState(false);
 
@@ -33,9 +37,9 @@ const Column = ({ column, cards = [], boardId, refetch }: ColumnsProps) => {
         ref={setNodeRef}
         className='bg-gray-light w-full h-full p-small rounded-small flex flex-col gap-small overflow-y-auto custom-scrollbar'
       >
-        {cards.map((card) => (
-          <CardKanban key={card.id} card={card} column={column} refetch={refetch} />
-        ))}
+        {loading
+          ? Array.from({ length: 3 }).map((_, i) => <CardSkeleton key={i} />)
+          : cards.map((card) => <CardKanban key={card.id} card={card} column={column} refetch={refetch} />)}
       </div>
 
       <div>

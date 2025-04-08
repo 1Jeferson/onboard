@@ -17,7 +17,7 @@ const columns = [CardColumns.ToDo, CardColumns.InProgress, CardColumns.InReview,
 
 const BoardPage = () => {
   const { boardId } = useParams<{ boardId: string }>();
-  const { data, refetch } = useBoard({ variables: { boardId: boardId || '' } });
+  const { data, refetch, loading } = useBoard({ variables: { boardId: boardId || '' } });
 
   const [cardList, setCardList] = useState<Card[]>(data?.board.cards || []);
   const [draggedCard, setDraggedCard] = useState<Card | null>(null);
@@ -89,7 +89,14 @@ const BoardPage = () => {
 
   return (
     <div className='w-full max-w-2xlarge p-3x-small custom-scrollbar'>
-      <Text variant='h1'>{data?.board.name}</Text>
+      {loading ? (
+        <div className='mb-small h-medium rounded-small bg-gray-x-light' />
+      ) : (
+        <Text variant='h1' className='mb-small'>
+          {data?.board.name}
+        </Text>
+      )}
+
       <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
         <SortableContext strategy={verticalListSortingStrategy} items={cardList.map((card) => card.id)}>
           <div className='flex gap-x-x-small overflow-x-auto'>
@@ -104,7 +111,7 @@ const BoardPage = () => {
             ))}
           </div>
         </SortableContext>
-        <DragOverlay>{draggedCard ? <CardKanban card={draggedCard} /> : null}</DragOverlay>
+        <DragOverlay>{draggedCard ? <CardKanban refetch={refetch} card={draggedCard} /> : null}</DragOverlay>
       </DndContext>
     </div>
   );
